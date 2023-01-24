@@ -10,9 +10,15 @@ const Navigation = () => {
       >
         Home
       </NavLink>
-
+      <br />
+      <NavLink
+        to="/items"
+        exact="true"
+      >
+        My BucketList
+      </NavLink>
     </div>
   )
 }
 
-export default Navigation
+export default Navigation 
