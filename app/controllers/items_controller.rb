@@ -2,13 +2,13 @@ class ItemsController < ApplicationController
 
     def index
         items = Item.all
-        render json: items
+        render json: items, include: :category
     end
 
     def show
         item = Item.find(params[:id])
         if item
-            render json: item
+            render json: item, include: :category
         else
             render json: "Not found"
         end
