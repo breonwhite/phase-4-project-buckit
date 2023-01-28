@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import EditLink from '../../components/EditLink';
 import ItemCard from './ItemCard';
+import ItemForm from './ItemForm';
 
 const Items = () => {
   const [ items, setItems ] = useState([])
@@ -19,6 +20,7 @@ const Items = () => {
     return (
     <div>
         <h1>All Items</h1>
+        <ItemForm />
         <ul>
           {items.map((item, index) => 
           <li key={ index }>
