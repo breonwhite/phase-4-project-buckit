@@ -16,11 +16,29 @@ const Items = () => {
     })
   }, [])
 
+  //adds new items that are submitted in ItemForm
+  const addItem = (item) => {
+    console.log(item)
+    fetch("http://localhost:3000/items", {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json',
+        'Accept' : 'application/json'
+      },
+      body: JSON.stringify(item)
+    })
+    .then(response => response.json())
+    .then(data => {
+      setItems([...items, data])
+    })
+
+  }
+
   
     return (
     <div>
         <h1>All Items</h1>
-        <ItemForm />
+        <ItemForm addItem={addItem} />
         <ul>
           {items.map((item, index) => 
           <li key={ index }>

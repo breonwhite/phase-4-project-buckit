@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react'
-import Toggle from 'react'
 
-const ItemForm = ({ addItem }) => {
-  const [ item, setItem ] = useState({
-    user_id: "",
-    description: "",
-    category_id: "",
-  })
-
-  const handleChange = (e) => {
-    setItem({
-      ...item,
-      [e.target.name] : e.target.value
+const ItemEdit = ({ thisItem, editItem }) => {
+    const [ item, setItem ] = useState({
+        //prefills the edit form fields with the current todo
+        id: thisItem.id,
+        user_id: thisItem.user_id,
+        description: thisItem.description,
+        category_id: thisItem.category_id,
     })
-  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    //adds new items that are submitted in ItemForm, passed fuction to /Items
-    addItem(item)
-  }
+    const handleChange = (e) => {
+        setItem({
+            ...item, 
+            [e.target.name] : e.target.value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        editItem(item)
+    }
 
   return (
     <div>
-        <h1>Item Form</h1>
+        <h1>ItemEdit</h1>
         <form onSubmit={handleSubmit}>
           <label>Description</label>
           <input 
@@ -54,4 +54,4 @@ const ItemForm = ({ addItem }) => {
   )
 }
 
-export default ItemForm
+export default ItemEdit

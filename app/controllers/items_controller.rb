@@ -17,11 +17,25 @@ class ItemsController < ApplicationController
     def create
         item = Item.create(item_params)
         if item
-            render json: item
+            render json: item, include: :category
         else
             render json: "Not found"
         end
     end
+
+    def update
+        item = Item.find_by(id: params[:id])
+        item.update(item_params)
+        if item
+            render json: item, include: :category
+        else
+            render json: "Could not update"
+        end
+    end
+
+    # def destroy
+
+    # end 
 
     private
 
