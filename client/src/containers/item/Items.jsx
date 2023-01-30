@@ -31,7 +31,21 @@ const Items = () => {
     .then(data => {
       setItems([...items, data])
     })
+  }
 
+  const deleteItem = (item) => {
+    console.log(`Item Deleted: ${item}`)
+    fetch(`/items/${item.id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type' : 'application/json',
+            'Accept' : 'application/json'
+        },
+    })
+    .then(() => {
+      const newItems = items.filter(i => i.id != item.id)
+      setItems(newItems)
+    })
   }
 
   
@@ -42,8 +56,7 @@ const Items = () => {
         <ul>
           {items.map((item, index) => 
           <li key={ index }>
-            <ItemCard item={item}/> 
-           <EditLink item={item}/>
+            <ItemCard item={item} deleteItem={deleteItem}/> 
           </li>)}
         </ul>
     </div>

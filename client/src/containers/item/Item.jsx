@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import EditLink from '../../components/EditLink'
 import ItemEdit from './ItemEdit'
+import { useNavigate } from 'react-router-dom'
 
 const Item = () => {
     const [ item, setItem ] = useState({})
@@ -9,6 +9,7 @@ const Item = () => {
     const {id} = useParams()
     //When a user clicks the edit button, it displays the edit form
     const [ form, setForm ] = useState(false)
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`/items/${id}`)
@@ -54,7 +55,7 @@ const Item = () => {
         {/* Displays a form when button is clicked */}
         { form ? 
             <ItemEdit thisItem={item} editItem={editItem} /> : 
-            <button onClick={ ()=> {setForm(true)}}>Edit Item</button>
+            <button onClick={ () => {setForm(true)} }>Edit Item</button>
         }
     </div>
   )

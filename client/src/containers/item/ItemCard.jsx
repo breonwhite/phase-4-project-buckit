@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item, deleteItem }) => {
   return (
     <div>
         <div>
@@ -9,7 +9,8 @@ const ItemCard = ({ item }) => {
         { item.description }<br/>
         { item.category.title }
         </Link>
-    </div>
+        - <button onClick={ () => {deleteItem(item)} }>Delete</button>
+        </div>
     </div>
   )
 }

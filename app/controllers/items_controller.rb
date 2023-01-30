@@ -33,9 +33,14 @@ class ItemsController < ApplicationController
         end
     end
 
-    # def destroy
-
-    # end 
+    def destroy
+        item = Item.find_by(id: params[:id])
+        if item
+            item.destroy
+        else
+            render json: "Not found"
+        end   
+    end 
 
     private
 
