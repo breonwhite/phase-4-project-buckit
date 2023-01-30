@@ -1,19 +1,19 @@
 // import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navigation from './components/Navigation';
+import { Routes, Route } from 'react-router-dom'
 import Home from './containers/Home';
 import Items from './containers/item/Items';
 import Item from './containers/item/Item';
 import { UserProvider } from './context/user';
 import Signup from './containers/user/Signup';
 import Login from './containers/user/Login';
+import Navbar from './containers/user/Navbar';
 
 function App() {
   
   return (
     <div className="App">
       <UserProvider>
-        <Navigation />
+        <Navbar />
         <Routes>
           <Route exact path="/" element={ <Home /> } />
           <Route exact path="/signup" element={ <Signup /> } />

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from '../../context/user';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
     const [ user, setUser ] = useState({
@@ -12,8 +12,8 @@ const Signup = () => {
       })
     const [ errorsList, setErrorsList ] = useState();
     const { signup } = useContext(UserContext);
-    //const history = useHistory()
-    
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         setUser({
             ...user,
@@ -32,7 +32,6 @@ const Signup = () => {
                 password_confirmation: user.password_confirmation
             }
         }
-        
         console.log(user)
         fetch('/signup', {
             method: 'POST',
@@ -46,7 +45,7 @@ const Signup = () => {
         .then(data => {
             if (!data.errors) {
                 signup(data)
-                //history.push('/')
+                navigate('/')
             } else {
                 setUser({
                     first_name: "",
