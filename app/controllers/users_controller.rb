@@ -6,18 +6,19 @@ class UsersController < ApplicationController
     end
 
     def show
-        user = User.find(params[:id])
+        user = User.find_by(id: params[:id])
         if user
-            render json: user
+            render json: user, include: :items
         else
             render json: "Not found"
         end
     end
 
+    # signup
     def create
         user = User.create(user_params)
         if user
-            render json: user
+            render json: user, include: :items
         else
             render json: "Not found"
         end

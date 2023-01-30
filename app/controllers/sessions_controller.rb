@@ -1,5 +1,11 @@
 class SessionsController < ApplicationController
-    get "/" do
-        { message: "Good luck with your project!" }.to_json
+    # login
+    def create
+
+    end
+
+    # logout
+    def destroy
+
     end
 end
