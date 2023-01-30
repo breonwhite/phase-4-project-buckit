@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   
+  get '/me', to: 'users#show'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   
   post '/signup', to: 'users#create'
-  get '/me', to: 'users#show'
+  
   
   resources :items, only: [:index, :show, :create, :update, :destroy]
   resources :categories, only: [:index]
