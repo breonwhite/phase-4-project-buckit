@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
         if item
             render json: item
         else
-            render json: { error: "Not Found" }, status: :unathorized
+            render json: { error: "Not Found" }, status: :unauthorized
         end
     end
 
@@ -50,11 +50,11 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-        params.require(:item).permit(:user_id, :category_id, :description)
+        params.permit(:description, :category_id)
     end
 
     def authorize
-        return render json: { error: "Not Autorized" }, status: :unathorized unless session.include? :user_id
+        return render json: { error: "Not Autorized" }, status: :unauthorized unless session.include? :user_id
     end
 
 
