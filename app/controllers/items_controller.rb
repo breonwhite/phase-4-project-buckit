@@ -1,33 +1,34 @@
 class ItemsController < ApplicationController
+    before_action :authorize
 
     def index
-        items = Item.all
-        render json: items, include: :category
+        items = current_user.items
+        render json: items
     end
 
     def show
-        item = Item.find(params[:id])
+        item = current_user.items.find_by(id: params[:id])
         if item
-            render json: item, include: :category
+            render json: item
         else
-            render json: "Not found"
+            render json: { error: "Not Found" }, status: :unathorized
         end
     end
 
     def create
-        item = Item.create(item_params)
-        if item
-            render json: item, include: :category
+        item = current_user.items.create(item_params)
+        if item.valid?
+            render json: item
         else
-            render json: "Not found"
+            render json: { errors: item.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
     def update
-        item = Item.find_by(id: params[:id])
+        item = current_user.items.find_by(id: params[:id])
         item.update(item_params)
         if item
-            render json: item, include: :category
+            render json: item
         else
             render json: "Could not update"
         end
@@ -44,8 +45,16 @@ class ItemsController < ApplicationController
 
     private
 
+    def current_user
+        User.find_by(id: session[:user_id])
+    end
+
     def item_params
         params.require(:item).permit(:user_id, :category_id, :description)
+    end
+
+    def authorize
+        return render json: { error: "Not Autorized" }, status: :unathorized unless session.include? :user_id
     end
 
 
