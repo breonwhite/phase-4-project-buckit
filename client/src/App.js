@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <UserProvider>
-        <Navbar />
+      <Navbar />
         <Routes>
           <Route exact path="/" element={ <Home /> } />
           <Route exact path="/signup" element={ <Signup /> } />

@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
     def show
         item = current_user.items.find_by(id: params[:id])
         if item
-            render json: item
+            render json: item, include: :category
         else
             render json: { error: "Not Found" }, status: :unauthorized
         end
@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
     def create
         item = current_user.items.create(item_params)
         if item.valid?
-            render json: item
+            render json: item, include: :category
         else
             render json: { errors: item.errors.full_messages }, status: :unprocessable_entity
         end

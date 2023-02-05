@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Toggle from 'react'
+import { UserContext } from '../../context/user' 
 
-const ItemForm = ({ addItem }) => {
+const ItemForm = () => {
   const [ item, setItem ] = useState({
-    user_id: "",
     description: "",
     category_id: "",
   })
+  const { addItem } = useContext(UserContext)
 
   const handleChange = (e) => {
     setItem({
@@ -41,13 +42,6 @@ const ItemForm = ({ addItem }) => {
             value={item.category_id}
             />
             <br />
-            <label>User ID - Temporary</label>
-            <input 
-            type="number"
-            name="user_id"
-            onChange={handleChange}
-            value={item.user_id}
-            />
             <input type="submit"/>
         </form>
     </div>
