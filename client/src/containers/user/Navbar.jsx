@@ -1,11 +1,25 @@
 import React, { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { UserContext } from '../../context/user';
-import { useNavigate } from "react-router-dom";
+
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 const Navbar = () => {
 const { user, logout, loggedIn } = useContext(UserContext)
-const navigate = useNavigate();
+const [anchorEl, setAnchorEl] = React.useState(null);
+
 
 const logoutUser = () => {
     fetch('/logout', {
@@ -14,50 +28,35 @@ const logoutUser = () => {
     })
     .then(() => {
         logout()
-        navigate('/login')
     })
 }
-
   if(loggedIn) {
     return (
-    <div>
-      <NavLink
-        to="/"
-        exact="true"
-      >
-        Home
-      </NavLink>
-      <br />
-      <NavLink
-        to="/items"
-        exact="true"
-      >
-        My BucketList
-      </NavLink>
-      <br />
-      <NavLink
-        to="/users"
-        exact="true"
-      >
-        My Profile
-      </NavLink>
-      <br />
-      <button onClick={logoutUser}>Logout</button>
-    </div>
+        <Box sx={{ flexGrow: 1 }} style={{ margin: 0 }}>
+            <AppBar position="static" style={{ margin: 0, background: '#212121' }} >
+                <Toolbar>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    BUCKIT  /manage your adventure.
+                </Typography>
+                <Button color="inherit" component={ NavLink } exact="true" to="/">Home</Button>
+                <Button color="inherit" component={ NavLink } exact="true" to="/items">My Bucket List</Button>
+                <Button color="inherit" onClick={logoutUser}>Logout</Button>
+                </Toolbar>
+            </AppBar>
+        </Box>
   )} else {
     return (
-        <div>
-           <NavLink
-            to="/login"
-            exact="true"
-            ><button>Login</button>
-            </NavLink> 
-            <NavLink
-            to="/signup"
-            exact="true"
-            ><button>Register</button>
-            </NavLink> 
-        </div>
+        <Box sx={{ flexGrow: 1 }} style={{ margin: 0 }}>
+            <AppBar position="static" style={{ margin: 0, background: '#212121' }}>
+                <Toolbar>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} >
+                    BUCKIT  /manage your adventure.
+                </Typography>
+                <Button color="inherit" component={ NavLink } exact="true" to="/signup">Register</Button>
+                <Button color="inherit" component={ NavLink } exact="true" to="/login">Login</Button>
+                </Toolbar>
+            </AppBar>
+        </Box>
     )
   }
 }
