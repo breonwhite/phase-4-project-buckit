@@ -29,23 +29,6 @@ import { useState } from 'react';
 
 
 const ItemCard = ({ item, deleteItem }) => {
-  // const [ icon, setIcon ] = useState(<CategoryIcon />)
-
-    
-  //   if (item.category_id == 1) {
-  //     setIcon(<Diversity3Icon />)
-  //   } else if (item.category.id = 2) {
-  //     return (<FlightIcon />)
-  //   } else if (item.category.id = 3) {
-  //     return (<RamenDiningIcon />)
-  //   } else if (item.category.id = 4) {
-  //     return (<HikingIcon />)
-  //   } else if (item.category.id = 5) {
-  //     return (<MenuBookIcon />)
-  //   } else {
-  //     return (<CategoryIcon />)
-  //   }
-
 
   return (
     <div>
