@@ -4,18 +4,18 @@ import EditLink from '../../components/EditLink';
 import { UserContext } from '../../context/user';
 import ItemCard from './ItemCard';
 import ItemForm from './ItemForm';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+
+
 
 const Items = () => {
-  const { items, loggedIn, addItem } = useContext(UserContext);
+  const { user, items, loggedIn, addItem, fetchItems } = useContext(UserContext);
   // const [ items, setItems ] = useState([])
   const params = useParams();
 
   // useEffect(() => {
-  //   fetch("http://localhost:3000/items")
-  //   .then(response => response.json())
-  //   .then(data => {
-  //       console.log(data)
-  //       setItems(data)
   //   })
   // }, [])
 
@@ -52,16 +52,25 @@ const Items = () => {
   }
     if(loggedIn) {
       return (
-        <div>
-            <h1>All Items</h1>
+        <Grid 
+          container
+          direction="column"
+          justify="center"
+          spacing={2}
+          style={{ minHeight: '100vh', width: '90%', margin: 'auto', padding: '10px' }}
+          >
+          <Grid item xs={3}>
+            <Typography variant="overline" gutterBottom>
+              Add Items
+            </Typography>
             <ItemForm addItem={addItem} />
-            <ul>
+            <br />
+          <Divider> { user.first_name }'s Items </Divider>
+          </Grid>
               { items.map((item, index) => 
-              <li key={ index }>
-                <ItemCard item={item} deleteItem={deleteItem}/> 
-              </li>)}
-            </ul>
-        </div>
+                <ItemCard key={ index } item={item} deleteItem={deleteItem}/> 
+              )}
+        </Grid>
       )
     } else {
       <h1>Not Authorized - Please log in</h1>
