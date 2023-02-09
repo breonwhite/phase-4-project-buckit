@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
     def index
         items = current_user.items
-        render json: items
+        render json: items, include: :category
     end
 
     def show
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
         item = current_user.items.find_by(id: params[:id])
         item.update(item_params)
         if item
-            render json: item
+            render json: item, include: :category
         else
             render json: "Could not update"
         end
