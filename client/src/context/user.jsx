@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 
-
 const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
@@ -30,6 +29,7 @@ const UserProvider = ({ children }) => {
         fetch('/items')
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             setItems(data)
         })
     }
@@ -47,6 +47,21 @@ const UserProvider = ({ children }) => {
         .then(response => response.json())
         .then(data => {
             setItems([...items, data])
+        })
+    }
+
+    const deleteItem = (item) => {
+        console.log(`Item Deleted: ${item}`)
+        fetch(`/items/${item.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Accept' : 'application/json'
+            },
+        })
+        .then(() => {
+          const newItems = items.filter(i => i.id != item.id)
+          setItems(newItems)
         })
     }
 
@@ -69,7 +84,7 @@ const UserProvider = ({ children }) => {
     }
 
   return (
-    <UserContext.Provider value={{ user, signup, login, logout, loggedIn, items, addItem }}>
+    <UserContext.Provider value={{ user, signup, login, logout, loggedIn, items, addItem, fetchItems, deleteItem }}>
         { children }
     </UserContext.Provider>
   )
