@@ -10,21 +10,24 @@
 puts "🌱 Seeding Users..."
 
 User.create(
-    email: "bishop@mailinator.com", 
-    first_name: "Bishop", 
-    last_name: "Bourque"
+    email: "badbunny@mailinator.com", 
+    first_name: "Bad", 
+    last_name: "Bunny"
+    password_digest: BCrypt::Password.create('Password')
 )
 
 User.create(
-    email: "twilight@mailinator.com", 
-    first_name: "Twilight", 
-    last_name: "Bourque"
+    email: "beyonceknowles@mailinator.com", 
+    first_name: "Beyonce", 
+    last_name: "Knowles",
+    password_digest: BCrypt::Password.create('Password')
 )
 
 User.create(
-    email: "papas@mailinator.com", 
-    first_name: "Breon", 
-    last_name: "White"
+    email: "barakobama@mailinator.com", 
+    first_name: "Barak", 
+    last_name: "Obama"
+    password_digest: BCrypt::Password.create('Password')
 )
 
 puts "Done seeding Users! Now seeding Categories..."
@@ -55,31 +58,31 @@ puts "Seeding Items for User 1..."
 Item.create(
     user_id: 1,
     category_id: 1,
-    description: "Air Bud"
+    description: "Cardi B"
 )
 
 Item.create(
     user_id: 1,
     category_id: 2,
-    description: "Pet Store"
+    description: "Puerto Rico"
 )
 
 Item.create(
     user_id: 1,
     category_id: 3,
-    description: "Peanut Butter"
+    description: "Mofongo"
 )
 
 Item.create(
     user_id: 1,
     category_id: 4,
-    description: 'Run really fast at the park'
+    description: 'Hike El Yunque National Forest'
 )
 
 Item.create(
     user_id: 1,
     category_id: 5,
-    description: 'A Dogs Life, by Beethoven'
+    description: 'Harry Potter'
 )
 
 puts "Complete! Now seeding Items for User 2..."
@@ -87,25 +90,25 @@ puts "Complete! Now seeding Items for User 2..."
 Item.create(
     user_id: 2,
     category_id: 1,
-    description: "Rupaul"
+    description: "Jay-Z"
 )
 
 Item.create(
     user_id: 2,
     category_id: 2,
-    description: "Paris"
+    description: "Houston, Texas"
 )
 
 Item.create(
     user_id: 2,
     category_id: 3,
-    description: "Buffalo Wings"
+    description: "BBQ"
 )
 
 Item.create(
     user_id: 2,
     category_id: 4,
-    description: 'Scuba Diving'
+    description: 'Swim with Whales'
 )
 
 Item.create(
@@ -119,31 +122,31 @@ puts "Complete! Now seeding Items for User 3..."
 Item.create(
     user_id: 3,
     category_id: 1,
-    description: "Drake"
+    description: "Michelle Obama"
 )
 
 Item.create(
     user_id: 3,
     category_id: 2,
-    description: "Mexico",
+    description: "Chicago, IL",
 )
 
 Item.create(
     user_id: 3,
     category_id: 3,
-    description: "Expensive steak",
+    description: "Fancy Steak",
 )
 
 Item.create(
     user_id: 3,
     category_id: 4,
-    description: 'Skydiving',
+    description: 'Speak in front of thousands of people',
 )
 
 Item.create(
     user_id: 3,
     category_id: 5,
-    description: 'The Bible',
+    description: 'Harry Potter',
 )
 
 puts "✅ Done seeding!"
