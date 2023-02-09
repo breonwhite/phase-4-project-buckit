@@ -1,56 +1,134 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
+//Icons for dropdown menu
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import HikingIcon from '@mui/icons-material/Hiking';
+import RamenDiningIcon from '@mui/icons-material/RamenDining';
+import FlightIcon from '@mui/icons-material/Flight';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 
 const ItemEdit = ({ thisItem, editItem }) => {
-    const [ item, setItem ] = useState({
-        //prefills the edit form fields with the current todo
-        id: thisItem.id,
-        user_id: thisItem.user_id,
-        description: thisItem.description,
-        category_id: thisItem.category_id,
+  const [ item, setItem ] = useState({
+    //prefills the edit form fields with the current todo
+    id: thisItem.id,        
+    description: thisItem.description,
+    category_id: thisItem.category_id,
+      category: {
+        title: thisItem.category.title
+      }
+  })
+
+  const handleChange = (e) => {
+    setItem({
+      ...item, 
+      [e.target.name] : e.target.value
     })
+  }
 
-    const handleChange = (e) => {
-        setItem({
-            ...item, 
-            [e.target.name] : e.target.value
-        })
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        editItem(item)
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    editItem(item)
+  }
 
   return (
-    <div>
-        <h1>ItemEdit</h1>
-        <form onSubmit={handleSubmit}>
-          <label>Description</label>
-          <input 
-            type="text"
-            name="description"
-            onChange={handleChange}
-            value={item.description}
-            />
-            <br />
-            <label>Category</label>
-            <input 
-            type="number"
-            name="category_id"
-            onChange={handleChange}
-            value={item.category_id}
-            />
-            <br />
-            <label>User ID - Temporary</label>
-            <input 
-            type="number"
-            name="user_id"
-            onChange={handleChange}
-            value={item.user_id}
-            />
-            <input type="submit"/>
-        </form>
-    </div>
+    <form onSubmit={ handleSubmit }>
+      <FormControl sx={{ width: '97%', padding: '10px' }}>
+        <InputLabel id="category_id">Category</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          name="category_id"
+          type="number"
+          label="Category"
+          id="category_id"
+          value={item.category_id}
+          onChange={handleChange}
+          sx={{ backgroundColor: '#f5f5f5' }}
+          >
+          <MenuItem value={1}>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Avatar sx={{ bgcolor: '#212121' }}>
+                <Diversity3Icon />
+              </Avatar>
+              <Typography variant="button" gutterBottom>
+                People I Want to Meet
+              </Typography>
+            </Stack>
+          </MenuItem>
+          <MenuItem value={2}>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Avatar sx={{ bgcolor: '#212121' }}>
+                <FlightIcon />
+              </Avatar>
+              <Typography variant="button" gutterBottom>
+                Places I Want to Travel To
+              </Typography>
+            </Stack>
+          </MenuItem>
+          <MenuItem value={3}>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Avatar sx={{ bgcolor: '#212121' }}>
+                <RamenDiningIcon />
+              </Avatar>
+              <Typography variant="button" gutterBottom>
+                Foods I Want to Try
+              </Typography>
+            </Stack>
+          </MenuItem>
+          <MenuItem value={4}>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Avatar sx={{ bgcolor: '#212121' }}>
+                <HikingIcon />
+              </Avatar>
+              <Typography variant="button" gutterBottom>
+                Adventures I Want to Take
+              </Typography>
+            </Stack>
+          </MenuItem>
+          <MenuItem value={5}>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Avatar sx={{ bgcolor: '#212121' }}>
+                <MenuBookIcon />
+              </Avatar>
+              <Typography variant="button" gutterBottom>
+                Books I Want to Read
+              </Typography>
+            </Stack>
+          </MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl sx={{ width: '97%', padding: '10px' }}>
+        <TextField
+          sx={{ width: '100%', backgroundColor: '#f5f5f5' }}
+          type="text"
+          name="description"
+          label="Description"
+          value={item.description}
+          onChange={handleChange}
+        />
+      </FormControl>
+      <br/>
+      <Button 
+        variant="contained" 
+        type="submit" 
+        size="large" 
+        style={{
+          borderRadius: 20,
+          backgroundColor: "#212121",
+          padding: "18px 36px",
+          fontSize: "10px"
+        }}>
+        Update Item
+      </Button>
+    </form>
   )
 }
 
