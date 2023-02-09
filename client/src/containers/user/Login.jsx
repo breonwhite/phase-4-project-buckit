@@ -11,22 +11,14 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Alert from '@mui/material/Alert';
-
-
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Container } from '@mui/material';
-
-
 
 const Login = () => {
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
     const [ errorsList, setErrorsList ] = useState();
-    const {login} = useContext(UserContext);
+    
+    const {login} = useContext(UserContext); // Login context from User.jsx
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -75,53 +67,57 @@ const Login = () => {
                 style={{ minHeight: '100vh', width: '50%', margin: 'auto' }}
             >
                 <Grid item xs={3}>
-                <Typography variant="h2" gutterBottom>
-                    Welcome back /
-                </Typography>
-                <form onSubmit={ handleSubmit }>
-                <Card sx={{ width: '100%', padding: '10px' }} elevation={24}>
-                    <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
-                        <Stack direction="column" spacing={2}>
-                            <TextField
-                                sx={{ width: '100%' }}
-                                type="email"
-                                name="email"
-                                label="Email Adress"
-                                value={email}
-                                autoComplete="off"
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <TextField
-                                sx={{ width: '100%' }}
-                                type="password"
-                                name="password"
-                                label="Password"
-                                value={password}
-                                autoComplete="off"
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </Stack>
-                    </FormControl>
-                    <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
-                        <Stack sx={{ width: '100%' }} spacing={1}>
-                            { errorsList }
-                        </Stack>
-                    </FormControl>
-                </Card><br />
-                <Button variant="contained" type="submit" size="large" 
-                    style={{
-                        borderRadius: 35,
-                        backgroundColor: "#212121",
-                        padding: "18px 36px",
-                        fontSize: "18px"
-                    }}>
-                    Log into your account
-                </Button>
-                </form>
+                    <Typography variant="h2" gutterBottom>
+                        Welcome back /
+                    </Typography>
+                    <form onSubmit={ handleSubmit }>
+                        <Card sx={{ width: '100%', padding: '10px' }} elevation={24}>
+                            <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
+                                <Stack direction="column" spacing={2}>
+                                    <TextField
+                                        sx={{ width: '100%' }}
+                                        type="email"
+                                        name="email"
+                                        label="Email Adress"
+                                        value={email}
+                                        autoComplete="off"
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                    <TextField
+                                        sx={{ width: '100%' }}
+                                        type="password"
+                                        name="password"
+                                        label="Password"
+                                        value={password}
+                                        autoComplete="off"
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                </Stack>
+                            </FormControl>
+                            <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
+                                <Stack sx={{ width: '100%' }} spacing={1}>
+                                    { errorsList }
+                                </Stack>
+                            </FormControl>
+                        </Card>
+                        <br />
+                        <Button
+                            variant="contained" 
+                            type="submit" 
+                            size="large" 
+                            style={{
+                                borderRadius: 35,
+                                backgroundColor: "#212121",
+                                padding: "18px 36px",
+                                fontSize: "18px"
+                            }}>
+                            Log into your account
+                        </Button>
+                    </form>
                 </Grid>
             </Grid> 
         </Box>
-  )
+    )
 }
 
 export default Login
