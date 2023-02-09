@@ -4,3 +4,10 @@ require_relative "config/environment"
 
 run Rails.application
 Rails.application.load_server
+
+# Our application
+# use ItemsController
+# use CategoriesController
+# run ApplicationController
+
+
