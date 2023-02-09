@@ -11,15 +11,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Alert from '@mui/material/Alert';
-
-
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Container } from '@mui/material';
-
 
 const Signup = () => {
     const [ user, setUser ] = useState({
@@ -28,7 +20,7 @@ const Signup = () => {
         email: "",
         password: "",
         password_confirmation: "",
-      })
+    })
     const [ errorsList, setErrorsList ] = useState();
     const { signup } = useContext(UserContext);
     const navigate = useNavigate();
@@ -85,7 +77,7 @@ const Signup = () => {
         backgroundSize: "cover",
         height: "100vh",
         color: "#f5f5f5"
-    }}>
+        }}>
         <Grid 
             container
             spacing={2}
@@ -93,91 +85,93 @@ const Signup = () => {
             alignItems="center"
             justify="center"
             style={{ minHeight: '100vh', width: '50%', margin: 'auto' }}
-        >
-        <Grid item xs={3}>
-        <Typography variant="h2" gutterBottom>
-            Start living/
-        </Typography>
-        <form onSubmit={ handleSubmit }>
-        <Card sx={{ width: '100%', padding: '10px' }} elevation={24}>
-            <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
-            <Stack direction="row" spacing={2}>
-                <TextField
-                    sx={{ width: '100%' }}
-                    name="first_name"
-                    label="First Name"
-                    onChange={handleChange}
-                    value={user.first_name}
-                />
-                <TextField
-                    sx={{ width: '100%' }}
-                    name="last_name"
-                    label="Last Name"
-                    onChange={handleChange}
-                    value={user.last_name}
-                />
-            </Stack>
-            </FormControl>
-            <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
-                <TextField
-                    fullWidth
-                    name="email"
-                    type="email"
-                    label="Email Address"
-                    onChange={handleChange}
-                    value={user.email}
-                />
-            </FormControl>
-            <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
-                <TextField
-                    fullWidth
-                    required
-                    name="password"
-                    type="password"
-                    label="Password"
-                    autoComplete="off"
-                    onChange={handleChange}
-                    value={user.password}
-                />
-            </FormControl>
-            <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
-                <TextField
-                    fullWidth
-                    required
-                    name="password_confirmation"
-                    type="password"
-                    label="Password Confirmation"
-                    autoComplete="off"
-                    onChange={handleChange}
-                    value={user.password_confirmation}
-                /> 
-            </FormControl>
-            { errorsList ? 
-                <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
-                    <Stack sx={{ width: '100%' }} spacing={1}>
-                        {errorsList}
-                    </Stack>
-                </FormControl> :
-                <FormControl fullWidth sx={{ width: '100%', mt: 2, mr: 1 }} align="center">
-                    <Typography variant="caption" display="block" gutterBottom>
-                        Already have an account? <Link exact="true" to="/login">Login here.</Link>
-                    </Typography>
-                </FormControl>
-            }
-            
-        </Card>
-            <br/>
-            <Button variant="contained" type="submit" size="large" 
-                style={{
-                    borderRadius: 35,
-                    backgroundColor: "#212121",
-                    padding: "18px 36px",
-                    fontSize: "18px"
-                }}>
-                Create your account
-            </Button>
-        </form>
-        </Grid>
+            >
+            <Grid item xs={3}>
+                <Typography variant="h2" gutterBottom>
+                    Start living/
+                </Typography>
+                <form onSubmit={ handleSubmit }>
+                    <Card sx={{ width: '100%', padding: '10px' }} elevation={24}>
+                        <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
+                            <Stack direction="row" spacing={2}>
+                                <TextField
+                                    sx={{ width: '100%' }}
+                                    name="first_name"
+                                    label="First Name"
+                                    onChange={handleChange}
+                                    value={user.first_name}
+                                />
+                                <TextField
+                                    sx={{ width: '100%' }}
+                                    name="last_name"
+                                    label="Last Name"
+                                    onChange={handleChange}
+                                    value={user.last_name}
+                                />
+                            </Stack>
+                        </FormControl>
+                        <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
+                            <TextField
+                                fullWidth
+                                name="email"
+                                type="email"
+                                label="Email Address"
+                                onChange={handleChange}
+                                value={user.email}
+                            />
+                        </FormControl>
+                        <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
+                            <TextField
+                                fullWidth
+                                required
+                                name="password"
+                                type="password"
+                                label="Password"
+                                autoComplete="off"
+                                onChange={handleChange}
+                                value={user.password}
+                            />
+                        </FormControl>
+                        <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
+                            <TextField
+                                fullWidth
+                                required
+                                name="password_confirmation"
+                                type="password"
+                                label="Password Confirmation"
+                                autoComplete="off"
+                                onChange={handleChange}
+                                value={user.password_confirmation}
+                            /> 
+                        </FormControl>
+                        { errorsList ? 
+                            <FormControl fullWidth sx={{ width: '100%', mt: 1, mr: 1 }}>
+                                <Stack sx={{ width: '100%' }} spacing={1}>
+                                    {errorsList}
+                                </Stack>
+                            </FormControl> :
+                            <FormControl fullWidth sx={{ width: '100%', mt: 2, mr: 1 }} align="center">
+                                <Typography variant="caption" display="block" gutterBottom>
+                                    Already have an account? <Link exact="true" to="/login">Login here.</Link>
+                                </Typography>
+                            </FormControl>
+                        } 
+                    </Card>
+                    <br/>
+                    <Button 
+                        variant="contained" 
+                        type="submit" 
+                        size="large" 
+                        style={{
+                            borderRadius: 35,
+                            backgroundColor: "#212121",
+                            padding: "18px 36px",
+                            fontSize: "18px"
+                        }}>
+                        Create your account
+                    </Button>
+                </form>
+            </Grid>
         </Grid>
     </Box>
   )
