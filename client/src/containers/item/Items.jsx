@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Link, useParams } from 'react-router-dom';
-import EditLink from '../../components/EditLink';
+import React, { useEffect, useContext } from 'react'
 import { UserContext } from '../../context/user';
 import ItemCard from './ItemCard';
 import ItemForm from './ItemForm';
@@ -9,21 +7,17 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import paper from '../../images/paper.jpg';
 import Box from '@mui/material/Box';
- 
-
-
-
+import UnathorizedPage from '../../components/UnathorizedPage';
 
 const Items = () => {
-  const { user, items, loggedIn, addItem, fetchItems, deleteItem } = useContext(UserContext);
-  const params = useParams();
+  const { user, items, loggedIn, addItem, fetchItems, deleteItem } = useContext(UserContext); // Data captured from context in User.jsx
 
-  // useEffect(() => {
-  //   })
-  // }, [])
+  useEffect(() => {
+    fetchItems()
+  }, [])
   
-    if(loggedIn) {
-      return (
+  if(loggedIn) {
+    return (
       <Box
         style={{
         backgroundImage: `url(${paper})`,
@@ -44,20 +38,19 @@ const Items = () => {
             </Typography>
             <ItemForm addItem={addItem} />
             <br />
-          <Divider sx={{color: '#212121' }}> { user.first_name }'s Items </Divider>
+            <Divider sx={{color: '#212121' }}> { user.first_name }'s Items </Divider>
           </Grid>
           <Grid item xs={3}>
-              { items.map((item, index) => 
-                <ItemCard key={ index } item={item} deleteItem={deleteItem}/>
-              )}
+            { items.map((item, index) => 
+              <ItemCard key={ index } item={item} deleteItem={deleteItem}/> 
+            )}
           </Grid>
         </Grid>
-        </Box>
-      )
-    } else {
-      <h1>Not Authorized - Please log in</h1>
-    }
-    
+      </Box>
+    )
+    } else return (
+      <UnathorizedPage />
+    )   
 } 
 
 export default Items
