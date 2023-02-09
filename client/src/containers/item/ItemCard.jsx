@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -7,7 +6,6 @@ import CardContent from '@mui/material/CardContent';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Button from '@mui/material/Button';
 
 const ItemCard = ({ item, deleteItem }) => {
 
