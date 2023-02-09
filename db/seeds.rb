@@ -12,7 +12,7 @@ puts "🌱 Seeding Users..."
 User.create(
     email: "badbunny@mailinator.com", 
     first_name: "Bad", 
-    last_name: "Bunny"
+    last_name: "Bunny",
     password_digest: BCrypt::Password.create('Password')
 )
 
@@ -26,7 +26,7 @@ User.create(
 User.create(
     email: "barakobama@mailinator.com", 
     first_name: "Barak", 
-    last_name: "Obama"
+    last_name: "Obama",
     password_digest: BCrypt::Password.create('Password')
 )
 
