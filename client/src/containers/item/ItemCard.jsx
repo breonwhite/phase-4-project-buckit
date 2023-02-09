@@ -1,32 +1,13 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import HikingIcon from '@mui/icons-material/Hiking';
-import RamenDiningIcon from '@mui/icons-material/RamenDining';
-import FlightIcon from '@mui/icons-material/Flight';
-import Diversity3Icon from '@mui/icons-material/Diversity3';
-import CategoryIcon from '@mui/icons-material/Category';
-import { useState } from 'react';
-
-
+import Button from '@mui/material/Button';
 
 const ItemCard = ({ item, deleteItem }) => {
 
@@ -39,12 +20,15 @@ const ItemCard = ({ item, deleteItem }) => {
             <DeleteIcon />
           </IconButton>
         }
-        title={<Link to={`/items/${item.id}`}>
-        { item.description }
-        </Link>
-        }
+        title={ item.description }
         subheader={ item.category.title }
       />
+      <CardContent>
+      <Typography variant="caption">
+      <Button color="inherit" component={ NavLink } exact="true" to={`/items/${item.id}`}>Edit</Button>
+        <Link to={`/items/${item.id}`} state={{item: item}}>EDIT</Link>
+      </Typography>
+      </CardContent>
     </Card>
     <br/>
     </div>
