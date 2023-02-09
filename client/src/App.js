@@ -1,8 +1,5 @@
 import React, { Suspense }from 'react';
 import { Routes, Route } from 'react-router-dom'
-//import Home from './containers/Home';
-// import Items from './containers/item/Items';
-// import Item from './containers/item/Item';
 import { UserProvider } from './context/user';
 import Signup from './containers/user/Signup';
 import Login from './containers/user/Login';
@@ -16,7 +13,7 @@ function App() {
   
   return (
     <div className="App">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}> 
       <UserProvider>
       <Navbar />
         <Routes>
