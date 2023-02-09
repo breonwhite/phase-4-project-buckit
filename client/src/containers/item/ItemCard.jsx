@@ -12,9 +12,9 @@ import Button from '@mui/material/Button';
 const ItemCard = ({ item, deleteItem }) => {
 
   return (
-    <div>
+  <div>
     <Card sx={{ width: '97%', padding: '10px' }} elevation={12}>
-    <CardHeader
+      <CardHeader
         action={
           <IconButton onClick={ () => deleteItem( item ) }aria-label="settings">
             <DeleteIcon />
@@ -24,14 +24,13 @@ const ItemCard = ({ item, deleteItem }) => {
         subheader={ item.category.title }
       />
       <CardContent>
-      <Typography variant="caption">
-      <Button color="inherit" component={ NavLink } exact="true" to={`/items/${item.id}`}>Edit</Button>
-        <Link to={`/items/${item.id}`} state={{item: item}}>EDIT</Link>
-      </Typography>
+        <Typography variant="caption">
+          <Link to={`/items/${item.id}`} state={{item: item}}>EDIT</Link>
+        </Typography>
       </CardContent>
     </Card>
     <br/>
-    </div>
+  </div>
   )
 }
 
